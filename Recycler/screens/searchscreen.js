@@ -1,8 +1,17 @@
+import React, { Component } from 'react';
 import React, { useState } from 'react';
 import { SearchBar } from '@rneui/themed';
 import { View, StyleSheet } from 'react-native';
 
-const SwitchComponent = () => {
+export default class  extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: {},
+    };
+  }
+
+ SwitchComponent = () => {
   const [search, setSearch] = useState("");
 
   const updateSearch = (search) => {
@@ -20,10 +29,11 @@ const SwitchComponent = () => {
   );
 };
 
+this.setState({search: {search}});
+
+}
 const styles = StyleSheet.create({
   view: {
     margin: 60,
   },
 });
-
-export default SwitchComponent;
