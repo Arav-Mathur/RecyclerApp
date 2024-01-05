@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import React, { useState } from 'react';
+import React, { Component, useState } from 'react';
 import { SearchBar } from '@rneui/themed';
 import { View, StyleSheet } from 'react-native';
 
