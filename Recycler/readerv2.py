@@ -6,6 +6,7 @@ sheetdata = pd.read_csv("data.csv")
 data = sheetdata.drop(['Material Name','Stream Name','Drop Off Instructions'],axis=1)
 print(data)
 
-# data['Material Name'].where(search value)
+# get input from searchbar as search value
+# data['Material Name'].where(searchval)
 # data['Material Synonym'][index].split(",")
-# or data['Material Synonym'].where(search value) --> do it as a for loop instead of .where function to use split
+# or data['Material Synonym'].where(searchval) --> do it as a for loop instead of .where function to use split
