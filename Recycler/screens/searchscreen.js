@@ -17,7 +17,6 @@ export default class Search extends Component {
   const updateSearch = (search) => {
     setSearch(search);
   };
-
   return (
     <View style={styles.view}>
       <SearchBar
@@ -26,10 +25,10 @@ export default class Search extends Component {
         value={search}
       />
     </View>
-  );
-};
+  ); 
+  this.setState({search: {search}});
 
-this.setState({search: {search}});
+};
 
 }
 const styles = StyleSheet.create({
