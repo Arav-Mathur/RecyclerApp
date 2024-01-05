@@ -1,4 +1,5 @@
 import csv
+import pandas as pd 
 rows = []
 with open("data.csv","r") as f:
   csvreader = csv.reader(f)
@@ -19,9 +20,8 @@ for item in recycleData:
     try:
         item.pop(5)
     except IndexError as e:
-       print(e)
        continue
     continue
 for item in recycleData:
-    if len(item) > 5:
-       print("aw shucks")
+    if len(item) > 4:
+       print(recycleData[0].index(""))
