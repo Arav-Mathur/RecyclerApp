@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import myStack from './navigation/stack'
 export default function App() {
-  return <myStack/>;
+  //return <myStack/>;
 }
 
 const styles = StyleSheet.create({

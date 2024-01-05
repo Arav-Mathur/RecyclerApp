@@ -1,4 +1,4 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+/*import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import Search from "../screens/searchscreen"
@@ -11,4 +11,4 @@ function myStack() {
       <Stack.Screen name="Search" component={Search} />
     </Stack.Navigator>
   );
-}
+}*/
