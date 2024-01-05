@@ -1,32 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { SearchBar } from '@rneui/themed';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
-type SearchBarComponentProps = {};
+const SwitchComponent = () => {
+  const [search, setSearch] = useState("");
 
-const SwitchComponent: React.FunctionComponent<SearchBarComponentProps> = () => {
-const [search, setSearch] = useState("");
+  const updateSearch = (search) => {
+    setSearch(search);
+  };
 
-const updateSearch = (search) => {
-  setSearch(search);
-};
-
-return (
-  <View style={styles.view}>
-    <SearchBar
-      placeholder="Type Here..."
-      onChangeText={updateSearch}
-      value={search}
-    />
-  </View>
-);
+  return (
+    <View style={styles.view}>
+      <SearchBar
+        placeholder="Type Here..."
+        onChangeText={updateSearch}
+        value={search}
+      />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
-view: {
-  margin: 10,
-},
+  view: {
+    margin: 10,
+  },
 });
 
 export default SwitchComponent;
