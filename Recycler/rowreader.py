@@ -24,4 +24,4 @@ for item in recycleData:
     continue
 for item in recycleData:
     if len(item) > 4:
-       print(recycleData[0].index(""))
+       print(recycleData[0])

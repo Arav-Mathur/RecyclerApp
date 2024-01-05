@@ -22,7 +22,7 @@ const SwitchComponent = () => {
 
 const styles = StyleSheet.create({
   view: {
-    margin: 10,
+    margin: 60,
   },
 });
 
