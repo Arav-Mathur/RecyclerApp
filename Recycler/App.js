@@ -1,18 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import myStack from './navigation/stack'
-import search from './screens/searchscreen'
+import Search from './screens/searchscreen'
+
+
 
 export default function App() {
-  //return <myStack/>;
-  var search1 = new search
-  return(
-  search1.SwitchComponent())
-
-  render() {
-    <View>\
-      <Text> {search1} </Text>
-    </View>
+  //return <myStack/>
+  var search1 = new(Search);
+  search1.SwitchComponent()
+  render(); {
+    return(
+      <View>
+        <Text> {search1.state.search} </Text>
+      </View>
+    );
   };
 }
 
