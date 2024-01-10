@@ -7,11 +7,10 @@ import Search from './screens/searchscreen'
 
 export default function App() {
   //return <myStack/>
-  var search1 = new(Search);
-  search1.SwitchComponent()
   render(); {
     return(
       <View>
+        <Search />
         <Text> {search1.state.search} </Text>
       </View>
     );
