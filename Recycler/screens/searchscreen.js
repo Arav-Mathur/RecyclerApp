@@ -17,10 +17,21 @@ render(){
 
     return (
       <View style={styles.view}>
-        <SearchBar
-          placeholder="Type Here..."
-          onChangeText={this.handleSearchChange}
-          value={this.state.search}
+        <SearchBar  
+          containerStyle={{
+            width: 390,
+            backgroundColor: "#9cb43f",
+            borderWidth: 5,
+            borderColor: "#9cb43f",
+          }}
+          inputContainerStyle={{
+            widthy: 300,
+            backgroundColor: "#9cb43f",
+          }}
+          inputStyle={{ backgroundColor: "#9cb43f" }}
+        placeholder="Type Here..."
+        onChangeText={this.handleSearchChange} 
+        value={this.state.search} 
         />
       </View>
       
@@ -30,6 +41,16 @@ render(){
 
 const styles = StyleSheet.create({
   view: {
-    margin: 60,
+    marginLeft: 1,
+    marginTop: 60,
+    marginBottom:60
   },
+  searchBar: {
+fontSize: 50
+
+  }
 });
+
+
+
+

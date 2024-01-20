@@ -18,9 +18,9 @@ export default class App extends Component {
     render(){
       console.log(this.state.search)
     return(
-      <View >
+      <View style={styles.container}>
         <Search onSearchChange={this.handleSearchChange} />
-        <Text style={{color: '#fff',}}> {this.state.search} </Text>
+        <Text style={{color: '#cfcbc0',fontSize: 30}}> {this.state.search} </Text>
       </View>
     );
   };
@@ -29,7 +29,7 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#cfcbc0',
     alignItems: 'left',
     justifyContent: 'top',
   },
