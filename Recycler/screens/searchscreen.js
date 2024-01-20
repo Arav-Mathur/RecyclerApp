@@ -3,26 +3,32 @@ import { SearchBar } from '@rneui/themed';
 import { View, StyleSheet } from 'react-native';
 
 export default class Search extends Component {
-  constructor() {
-
-    const [search, setSearch] = useState("");
-
-    const updateSearch = (search) => {
-      setSearch(search);
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: "",
     };
+  }
+  handleSearchChange = (text) => {
+    this.setState({ search: text });
+    this.props.onSearchChange(text); // Pass the search value to the parent component
+  };
+render(){
+  let mysearch = ""
+
     return (
       <View style={styles.view}>
         <SearchBar
           placeholder="Type Here..."
-          onChangeText={updateSearch}
-          value={search}
+          onChangeText={this.handleSearchChange}
+          value={this.state.search}
         />
       </View>
+      
     );
-
+    }
   };
 
-}
 const styles = StyleSheet.create({
   view: {
     margin: 60,
