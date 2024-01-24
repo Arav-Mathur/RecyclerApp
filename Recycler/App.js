@@ -22,7 +22,7 @@ export default class App extends Component {
         source={require('./assets/image1.png')} style={styles.background}>
       <View style={styles.container}>
         <Search onSearchChange={this.handleSearchChange} />
-        <Text style={{color: '#cfcbc0',fontSize: 30}}> {this.state.search} </Text>
+        <Text style={{color: 'black',fontSize: 30}}> {this.state.search} </Text>
       </View>
             </ImageBackground>
 
