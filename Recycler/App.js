@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, Image } from 'react-native';
 import Search from './screens/searchscreen'
 
 
@@ -18,21 +18,26 @@ export default class App extends Component {
     render(){
       console.log(this.state.search)
     return(
-      <ImageBackground
-        source={require('./assets/image1.png')} style={styles.background}>
+     <View>
       <View style={styles.container}>
-        <Search onSearchChange={this.handleSearchChange} />
+      <Search onSearchChange={this.handleSearchChange} />
         <Text style={{color: 'black',fontSize: 30}}> {this.state.search} </Text>
       </View>
-            </ImageBackground>
-
+      <View>
+         <Image source={require('./assets/image1.png')} style={styles.background}  />
+      </View>
+      </View>
     );
   };
 }
 const styles = StyleSheet.create({
   background: {
-    flex: 1,
-    resizeMode: 'cover', // or 'stretch' based on your preference
+  marginTop: 438.6,
+    width: 732, 
+    height: 434,
+   resizeMode:"stretch",
+   alignItems: "center",
+   justifyContent: "center",
   },
   container: {
     flex: 1,
@@ -40,5 +45,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     padding: 20, // Adjust the padding as needed
+  //  marginTop: 100
   },
 });
+
+
+
+//<ImageBackground
+//source={require('./assets/image1.png')} style={styles.background}>
