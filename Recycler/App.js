@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ImageBackground, Image } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, Image,SafeAreaView } from 'react-native';
 import Search from './screens/searchscreen'
 
 
@@ -10,42 +10,58 @@ export default class App extends Component {
       super(props);
       this.state = {
         search: "",
+        result: []
       };
     }
     handleSearchChange = (value) => {
-      this.setState({ search: value });
+      this.handleSearch
     };
+    handleSearch = async () => {
+      try {
+          const response = await fetch('http://localhost:5000/find', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ search_val: this.state.search }),
+          });
+
+          const data = await response.json();
+          this.setState({ result: data.result });
+      } catch (error) {
+          console.error('Error:', error);
+      }
+  };
     render(){
-      console.log(this.state.search)
+      console.log(this.state.result)
     return(
      <View>
-      <View style={styles.container}>
+      <SafeAreaView style={styles.searchbar} >
       <Search onSearchChange={this.handleSearchChange} />
-        <Text style={{color: 'black',fontSize: 30}}> {this.state.search} </Text>
-      </View>
-      <View>
-         <Image source={require('./assets/image1.png')} style={styles.background}  />
-      </View>
+      </SafeAreaView>
+      <Text style={{color: 'black',fontSize: 30}}>{ JSON.stringify(this.state.result) }</Text>
+      <View style={styles.img}>
+        <Image source={require('./assets/image1.png')}style={styles.img}/>
+        </View> 
       </View>
     );
   };
 }
 const styles = StyleSheet.create({
-  background: {
-  marginTop: 438.6,
-    width: 732, 
-    height: 434,
-   resizeMode:"stretch",
-   alignItems: "center",
-   justifyContent: "center",
+  img:{
+    marginTop:140,
+    resizeMode:"stretch",
+    height:400
   },
   container: {
     flex: 1,
-    backgroundColor: 'rgba(207, 203, 192, 0.5)', // Adjust the background color or use 'transparent'
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    padding: 20, // Adjust the padding as needed
-  //  marginTop: 100
+    backgroundColor: 'rgba(207, 203, 192, 0.5)',
+  },
+  searchbar:{
+    height:190,
+    backgroundColor: 'rgb(207,203,192)',
+    alignItems: 'center',
+    justifyContent:"center"
   },
 });
 
