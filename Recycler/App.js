@@ -2,7 +2,7 @@ import React, { Component, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ImageBackground, Image,SafeAreaView } from 'react-native';
 import Search from './screens/searchscreen'
-
+ 
 
 
 export default class App extends Component {
