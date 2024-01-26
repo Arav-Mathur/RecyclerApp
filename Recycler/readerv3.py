@@ -1,6 +1,8 @@
 import csv
 import pandas as pd 
 import math
+from flask import Flask, request, jsonify
+app = Flask(__name__)
 class Reader:
     def __init__(self):
         self.sheetdata = pd.read_csv("data.csv")
@@ -28,3 +30,18 @@ class Reader:
 r1 = Reader()
 #r1.find(r1.sheetdata['Material Title'][144])
 r1.find("coffee creamer")
+
+reader = Reader()
+
+@app.route('/find', methods=['POST'])
+def find():
+    try:
+        data = request.get_json()
+        search_val = data['search_val']
+        result = reader.find(search_val)
+        return jsonify(result=result)
+    except Exception as e:
+        return jsonify(error=str(e))
+
+if __name__ == '__main__':
+    app.run(debug=True)
