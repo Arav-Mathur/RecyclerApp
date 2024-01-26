@@ -38,10 +38,12 @@ def find():
     try:
         data = request.get_json()
         search_val = data['search_val']
+        print(f'Received request with search value: {search_val}')
         result = reader.find(search_val)
+        print('Sending response:', result)
         return jsonify(result=result)
     except Exception as e:
         return jsonify(error=str(e))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

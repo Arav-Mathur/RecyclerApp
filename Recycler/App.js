@@ -14,26 +14,29 @@ export default class App extends Component {
       };
     }
     handleSearchChange = (value) => {
-      this.handleSearch
+      console.log(this.state.result)
+      this.handleSearch()
     };
     handleSearch = async () => {
       try {
-          const response = await fetch('http://localhost:5000/find', {
+        console.log('Sending request to Flask server...');
+          const response = await fetch('http://192.168.68.59:5000/find', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
               },
               body: JSON.stringify({ search_val: this.state.search }),
           });
-
+          console.log('Received response from Flask server:', response);
           const data = await response.json();
+          console.log('Parsed JSON data:', data);
           this.setState({ result: data.result });
       } catch (error) {
           console.error('Error:', error);
       }
   };
     render(){
-      console.log(this.state.result)
+      
     return(
      <View>
       <SafeAreaView style={styles.searchbar} >
