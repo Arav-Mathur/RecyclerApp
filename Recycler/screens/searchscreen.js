@@ -20,7 +20,7 @@ render(){
         <SearchBar  
         platform="default"
           containerStyle={{
-            width: 350,
+            width: 400,
             backgroundColor: "#9cb43f",
             borderWidth: 5,
             borderColor: "#9cb43f",
@@ -47,8 +47,8 @@ render(){
 const styles = StyleSheet.create({
   view: {
     marginLeft: 0,
-    marginTop: 60,
-    marginBottom:60
+    marginTop: 0,
+    marginBottom:10
   },
   searchBar: {
 fontSize: 50

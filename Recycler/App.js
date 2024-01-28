@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState,Linking } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ImageBackground, Image,SafeAreaView } from 'react-native';
 import Search from './screens/searchscreen'
@@ -14,9 +14,12 @@ export default class App extends Component {
       };
     }
     handleSearchChange = (value) => {
-      console.log(this.state.result)
-      this.handleSearch()
+      this.setState({ search: value }, () => {
+        console.log(this.state.result);
+        this.handleSearch();
+      });
     };
+    
     handleSearch = async () => {
       try {
         console.log('Sending request to Flask server...');
@@ -40,9 +43,13 @@ export default class App extends Component {
     return(
      <View>
       <SafeAreaView style={styles.searchbar} >
+      <Text style={{color: 'black',fontSize: 30,justifyContent:"center",paddingBottom:10}}>{"Recycler App"}</Text>
       <Search onSearchChange={this.handleSearchChange} />
       </SafeAreaView>
-      <Text style={{color: 'black',fontSize: 30}}>{ JSON.stringify(this.state.result) }</Text>
+      <Text style={styles.text}>{"You may dispose this at:"}</Text>
+      <Text style={styles.text}>{this.state.result ? this.state.result.join(', '):
+      "Sorry, no results were found, please navigate to your local website to get more information"}</Text>
+      <Text style={styles.description}>Recycler App: This project aims to enhance community awareness and engagement in responsible waste management practices. The mobile application provides a user-friendly platform for residents to easily access information on proper disposal and recycling methods for various materials. The project's core idea revolves around fostering a cleaner and more environmentally conscious community by empowering individuals with practical knowledge on waste management.</Text>
       <View style={styles.img}>
         <Image source={require('./assets/image1.png')}style={styles.img}/>
         </View> 
@@ -52,9 +59,16 @@ export default class App extends Component {
 }
 const styles = StyleSheet.create({
   img:{
-    marginTop:140,
+    marginTop:0,
     resizeMode:"stretch",
-    height:400
+    height:270
+  },
+  text:{
+    color: 'black',fontSize: 30,alignContent:"center",padding:10
+  },
+  description:{
+    fontSize:15,
+    padding:20
   },
   container: {
     flex: 1,

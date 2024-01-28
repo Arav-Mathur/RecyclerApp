@@ -12,9 +12,14 @@ class Reader:
         
     def find(self, searchval):
         try:
-            self.searchvalue = str(searchval)
-            result = self.data.loc[self.data['Material Title'] == self.searchvalue]
-            print(result['Stream Title'])
+            self.searchvalue = str(searchval).strip().lower()
+            condition = self.data['Material Title'].str.contains(self.searchvalue)
+            print("Exact Match Condition:", condition.tolist())
+            if condition.any():
+                result = self.data[condition]
+                return list(result['Stream Title'])
+            else:
+                raise NameError("No matching rows found.")
         except:
             #try:
                 result_rows = []
@@ -23,7 +28,7 @@ class Reader:
                     if isinstance(material_synonyms_list, list) and self.searchvalue in material_synonyms_list:
                         result_rows.append(row)
                 result = pd.DataFrame(result_rows)
-                print(result['Stream Title'])
+                return list(result['Stream Title'])
             # except:
             #     print("Sorry we could not find your item in the database, please look at your local website for more information!")
             # or data['Material Synonym'].where(searchval) --> do it as a for loop instead of .where function to use split
