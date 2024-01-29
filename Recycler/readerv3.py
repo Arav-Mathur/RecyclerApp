@@ -1,8 +1,5 @@
-import csv
 import pandas as pd 
-import math
 from flask import Flask, request, jsonify
-app = Flask(__name__)
 class Reader:
     def __init__(self):
         self.sheetdata = pd.read_csv("data.csv")
@@ -26,13 +23,8 @@ class Reader:
                         result_rows.append(row)
                 result = pd.DataFrame(result_rows)
                 return list(result['Stream Title'])
-            # except:
-            #     print("Sorry we could not find your item in the database, please look at your local website for more information!")
-            # or data['Material Synonym'].where(searchval) --> do it as a for loop instead of .where function to use split
-#r1.find(r1.sheetdata['Material Title'][144])
-
+app = Flask(__name__)
 reader = Reader()
-
 @app.route('/find', methods=['POST'])
 def find():
     try:

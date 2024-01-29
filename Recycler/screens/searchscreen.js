@@ -1,6 +1,6 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { SearchBar } from '@rneui/themed';
-import { View, StyleSheet,ImageBackground } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 export default class Search extends Component {
   constructor(props) {
     super(props);
@@ -10,42 +10,33 @@ export default class Search extends Component {
   }
   handleSearchChange = (text) => {
     this.setState({ search: text });
-    this.props.onSearchChange(text); // Pass the search value to the parent component
+    this.props.onSearchChange(text);
   };
-render(){
-  let mysearch = ""
-
+  render(){
     return (
       <View style={styles.view}>
         <SearchBar  
-        platform="default"
+          platform="default"
           containerStyle={{
             width: 400,
             backgroundColor: "#9cb43f",
             borderWidth: 5,
             borderColor: "#9cb43f",
-            borderRadius: 20, // Adjust the value to make it round
+            borderRadius: 20, 
           }}
           inputContainerStyle={{
             width: 380,
             backgroundColor: "#9cb43f",
-            borderRadius: 20, // Adjust the value to make it round
+            borderRadius: 20, 
           }}
           inputStyle={{ color: "#000" }}
-        placeholder="Type Here..."
-        placeholderTextColor={ "#000000"}
-        onChangeText={this.handleSearchChange} 
-        value={this.state.search} 
-        showCancel
-        iconConfig={{
-          color: "#000", // Set the color of the search icon
-          cancelIconColor: "#000", // Set the color of the cancel icon
-        }}
-      
-        
+          placeholder="Type Here..."
+          placeholderTextColor={ "#000000"}
+          onChangeText={this.handleSearchChange} 
+          value={this.state.search} 
+          showCancel
         />
       </View>
-      
     );
     }
   };
@@ -60,31 +51,3 @@ const styles = StyleSheet.create({
 fontSize: 50
   }
 });
-
-
-
-
-
-
-/*
-    <SearchBar
-      platform="default"
-      containerStyle={{}}
-      inputContainerStyle={{}}
-      inputStyle={{}}
-      leftIconContainerStyle={{}}
-      rightIconContainerStyle={{}}
-      lightTheme
-      loadingProps={{}}
-      onChangeText={newVal => setValue(newVal)}
-      onClearText={() => console.log(onClearText())}
-      placeholder="Type query here..."
-      placeholderTextColor="#888"
-      round
-      showCancel
-      cancelButtonTitle="Cancel"
-      cancelButtonProps={{ size: 5 }}
-      onCancel={() => console.log(onCancel())}
-      value={value}
-    />
-  */

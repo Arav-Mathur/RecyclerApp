@@ -1,63 +1,48 @@
-import React, { Component, useState,Linking } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ImageBackground, Image,SafeAreaView } from 'react-native';
+import React, { Component} from 'react';
+import { StyleSheet, Text, View, Image,SafeAreaView } from 'react-native';
 import Search from './screens/searchscreen'
- 
-
-
-export default class App extends Component {
-    constructor(props) {
+ export default class App extends Component {
+  constructor(props) {
       super(props);
       this.state = {
         search: "",
         result: []
-      };
-    }
-    handleSearchChange = (value) => {
-      this.setState({ search: value }, () => {
-        console.log(this.state.result);
-        this.handleSearch();
-      });
-    };
-    
-    handleSearch = async () => {
-      try {
-        console.log('Sending request to Flask server...');
-          const response = await fetch('http://192.168.68.59:5000/find', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ search_val: this.state.search }),
-          });
-          console.log('Received response from Flask server:', response);
-          const data = await response.json();
-          console.log('Parsed JSON data:', data);
-          this.setState({ result: data.result });
-      } catch (error) {
-          console.error('Error:', error);
-      }
+      };}
+  handleSearchChange = (value) => {
+    this.setState({ search: value }, () => {
+      console.log(this.state.result);
+      this.handleSearch();
+    });};
+  handleSearch = async () => {
+    console.log('Sending request to Flask server...');
+    const response = await fetch('http://192.168.68.59:5000/find', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ search_val: this.state.search }),
+    });
+    console.log('Received response from Flask server:', response);
+    const data = await response.json();
+    console.log('Parsed JSON data:', data);
+    this.setState({ result: data.result });
   };
-    render(){
-      
+  render(){
     return(
-     <View>
-      <SafeAreaView style={styles.searchbar} >
-      <Text style={{color: 'black',fontSize: 30,justifyContent:"center",paddingBottom:10}}>{"Recycler App"}</Text>
-      <Search onSearchChange={this.handleSearchChange} />
-      </SafeAreaView>
-      <Text style={styles.text}>{"You may dispose this at:"}</Text>
-      <Text style={styles.text}>{this.state.result.length>0? this.state.result.join(', '):
-      "Sorry, no results were found, please navigate to your local website to get more information"}</Text>
-      <Text style={styles.description}>Recycler App: 
-This project is all about making recycling easy for everyone in our community. The Recycler App is like a friendly guide, helping you find the best ways to recycle different things. It's simple to use and gives you practical tips on how to be kind to the environment. Let's all work together for a cleaner and more eco-friendly future, one recyclable at a time!</Text>
-      <View style={styles.img}>
-        <Image source={require('./assets/image1.png')}style={styles.img}/>
+      <View>
+        <SafeAreaView style={styles.searchbar} >
+          <Text style={{color: 'black',fontSize: 30,justifyContent:"center",paddingBottom:10}}>{"Recycler App"}</Text>
+          <Search onSearchChange={this.handleSearchChange}/>
+        </SafeAreaView>
+        <Text style={styles.text}>{"You may dispose this at:"}</Text>
+        <Text style={styles.text}>{this.state.result.length>0? this.state.result.join(', '):
+        "Sorry, no results were found, please navigate to your local website to get more information"}</Text>
+        <Text style={styles.description}>Recycler App: This project is all about making recycling easy for everyone in our community. The Recycler App is like a friendly guide, helping you find the best ways to recycle different things. It's simple to use and gives you practical tips on how to be kind to the environment. Let's all work together for a cleaner and more eco-friendly future, one recyclable at a time!</Text>
+        <View style={styles.img}>
+          <Image source={require('./assets/image1.png')}style={styles.img}/>
         </View> 
       </View>
-    );
-  };
-}
+    );};
+  }
+
 const styles = StyleSheet.create({
   img:{
     marginTop:0,
@@ -82,8 +67,3 @@ const styles = StyleSheet.create({
     justifyContent:"center"
   },
 });
-
-
-
-//<ImageBackground
-//source={require('./assets/image1.png')} style={styles.background}>
