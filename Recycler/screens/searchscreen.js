@@ -27,15 +27,21 @@ render(){
             borderRadius: 20, // Adjust the value to make it round
           }}
           inputContainerStyle={{
-            width: 300,
+            width: 380,
             backgroundColor: "#9cb43f",
             borderRadius: 20, // Adjust the value to make it round
           }}
-          inputStyle={{ backgroundColor: "#9cb43f" }}
+          inputStyle={{ color: "#000" }}
         placeholder="Type Here..."
+        placeholderTextColor={ "#000000"}
         onChangeText={this.handleSearchChange} 
         value={this.state.search} 
-      showCancel
+        showCancel
+        iconConfig={{
+          color: "#000", // Set the color of the search icon
+          cancelIconColor: "#000", // Set the color of the cancel icon
+        }}
+      
         
         />
       </View>
@@ -52,7 +58,6 @@ const styles = StyleSheet.create({
   },
   searchBar: {
 fontSize: 50
-
   }
 });
 

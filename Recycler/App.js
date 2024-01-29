@@ -47,9 +47,10 @@ export default class App extends Component {
       <Search onSearchChange={this.handleSearchChange} />
       </SafeAreaView>
       <Text style={styles.text}>{"You may dispose this at:"}</Text>
-      <Text style={styles.text}>{this.state.result ? this.state.result.join(', '):
+      <Text style={styles.text}>{this.state.result.length>0? this.state.result.join(', '):
       "Sorry, no results were found, please navigate to your local website to get more information"}</Text>
-      <Text style={styles.description}>Recycler App: This project aims to enhance community awareness and engagement in responsible waste management practices. The mobile application provides a user-friendly platform for residents to easily access information on proper disposal and recycling methods for various materials. The project's core idea revolves around fostering a cleaner and more environmentally conscious community by empowering individuals with practical knowledge on waste management.</Text>
+      <Text style={styles.description}>Recycler App: 
+This project is all about making recycling easy for everyone in our community. The Recycler App is like a friendly guide, helping you find the best ways to recycle different things. It's simple to use and gives you practical tips on how to be kind to the environment. Let's all work together for a cleaner and more eco-friendly future, one recyclable at a time!</Text>
       <View style={styles.img}>
         <Image source={require('./assets/image1.png')}style={styles.img}/>
         </View> 
