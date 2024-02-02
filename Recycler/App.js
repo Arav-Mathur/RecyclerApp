@@ -29,7 +29,7 @@ import Search from './screens/searchscreen'
     return(
       <View>
         <SafeAreaView style={styles.searchbar} >
-          <Text style={{color: 'black',fontSize: 30,justifyContent:"center",paddingBottom:10}}>{"Recycler App"}</Text>
+          <Text style={{color: 'black',fontSize: 30,justifyContent:"center",paddingBottom:10,fontFamily:"Georgia"}}>{"Recycler App"}</Text>
           <Search onSearchChange={this.handleSearchChange}/>
         </SafeAreaView>
         <Text style={styles.text}>{"You may dispose this at:"}</Text>
@@ -50,11 +50,16 @@ const styles = StyleSheet.create({
     height:270
   },
   text:{
-    color: 'black',fontSize: 30,alignContent:"center",padding:10
+    color: 'black',
+    fontSize: 30,
+    alignContent:"center",
+    padding:10,
+    fontFamily:'Georgia',
   },
   description:{
     fontSize:15,
-    padding:20
+    padding:20,
+    fontFamily:'Georgia',
   },
   container: {
     flex: 1,
