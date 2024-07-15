@@ -2,7 +2,7 @@ import pandas as pd
 from flask import Flask, request, jsonify
 class Reader:
     def __init__(self):
-        self.sheetdata = pd.read_csv("data.csv")
+        self.sheetdata = pd.read_csv("Recycler\data.csv")
         self.data = self.sheetdata.drop(['Material Name','Stream Name','Drop Off Instructions'],axis=1)
         self.searchvalue = ''
         self.data['Material Synonyms'] = self.data['Material Synonyms'].apply(lambda x: x.split(',') if not pd.isnull(x) else x)
@@ -10,7 +10,6 @@ class Reader:
     def find(self, searchval):
         try:
             self.searchvalue = str(searchval).strip().lower()
-            words = pd.DataFrame(self.data['Material Title'].str.extract(r'^([^(\d]+)'))
             result = self.data[self.data['Material Title'].str.lower() == self.searchvalue]
             return list(result['Stream Title'])
         except:
@@ -25,6 +24,7 @@ class Reader:
                 return list(result['Stream Title'])
 app = Flask(__name__)
 reader = Reader()
+
 @app.route('/find', methods=['POST'])
 def find():
     try:
