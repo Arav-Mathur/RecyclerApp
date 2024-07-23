@@ -1,6 +1,0 @@
-1) use a local file for the app
-2) check if i can use the image (legally)
-3) fix the no results found page at start 
-4) find different ways to get new data
-5) did you mean thingy
-6) enter button to search
