@@ -2,7 +2,7 @@ import pandas as pd
 from flask import Flask, request, jsonify
 class Reader:
     def __init__(self):
-        self.sheetdata = pd.read_csv("data.csv")
+        self.sheetdata = pd.read_csv("app/data.csv")
         self.data = self.sheetdata.drop(['Material Name','Stream Name','Drop Off Instructions'],axis=1)
         self.searchvalue = ''
         self.data['Material Synonyms'] = self.data['Material Synonyms'].apply(lambda x: x.split(',') if not pd.isnull(x) else x)

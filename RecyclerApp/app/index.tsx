@@ -1,5 +1,5 @@
-import { Text, View } from "react-native";
-import App from "./app";
+import DrawerNavigator from "./drawerNavigation";
+
 export default function Index() {
-  return (<App/>);
+  return <DrawerNavigator />;
 }
