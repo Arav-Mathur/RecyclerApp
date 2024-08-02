@@ -10,7 +10,8 @@ class Reader:
     def find(self, searchval):
         try:
             self.searchvalue = str(searchval).strip().lower()
-            result = self.data[self.data['Material Title'].str.lower() == self.searchvalue]
+            #result = self.data[self.data['Material Title'].str.lower() == self.searchvalue.lower()]
+            result = self.data[self.data['Material Title'].str.lower().str.contains(self.searchvalue.lower(), na=False)]
             return list(result['Stream Title'])
         except:
             #try:

@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-} from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, FlatList } from "react-native";
 import Search from "./searchscreen";
 import { Collapsible } from "@/components/Collapsible";
 import Recent from "./recentlySearched";
@@ -57,15 +52,34 @@ export default class App extends Component<{}, State> {
           <Text style={styles.text}>{"You may dispose this at:"}</Text>
           <Text style={styles.text}>
             {this.state.search &&
-              (this.state.result.length > 0
-                ? this.state.result.join(", ")
-                : "Sorry, no results were found, please navigate to your local website to get more information")}
+              (this.state.result.length > 0 ? (
+                <View style={{ overflow: "scroll", height: "78%" }}>
+                  <FlatList
+                    data={this.state.result}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item }) => {
+                      const backgroundColor = 
+                        item.toLowerCase().includes("recycling") ? "blue"
+                        : item.toLowerCase().includes("garbage") ? "gray"
+                        : item.toLowerCase().includes("yard") ? "green"
+                        : item.toLowerCase().includes("food") ? "lightgreen"
+                        : undefined;
+                      return (
+                        <Text style={[styles.listText,{backgroundColor: backgroundColor}]}>
+                          {item}
+                        </Text>
+                      );
+                    }}
+                  />
+                </View>
+              ) : ( "Sorry, no results were found, please navigate to your local website to get more information"
+              ))}
           </Text>
         </View>
         <View style={{ position: "absolute", bottom: "10%", width: "100%" }}>
           <Collapsible
-            title="Recently Searched"
-            children={<Recent />}
+            title={<Text style={styles.collapsibleTitle}>Recently Searched</Text>}
+            children={<Recent/>}
           ></Collapsible>
         </View>
       </>
@@ -81,15 +95,20 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     fontFamily: "Georgia",
   },
-
   text: {
     color: "black",
     fontSize: 30,
     alignContent: "center",
     padding: 10,
     fontFamily: "Georgia",
+    margin: 10,
   },
-
+  recentlySearched: {
+    color: "black",
+    fontSize: 30,
+    alignContent: "center",
+    fontFamily: "Georgia",
+  },
   container: {
     flex: 1,
     backgroundColor: "rgba(207, 203, 192, 0.5)",
@@ -99,5 +118,20 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(207,203,192)",
     alignItems: "center",
     justifyContent: "center",
+  },
+  listText:{
+    color: "black",
+    fontSize: 25,
+    alignContent: "center",
+    padding: 10,
+    marginBottom: 5,
+    fontFamily: "Georgia",
+    width: "100%",
+  },
+  collapsibleTitle:{
+    color: "black",
+    fontSize: 20,
+    alignContent: "center",
+    fontFamily: "Georgia",
   },
 });
